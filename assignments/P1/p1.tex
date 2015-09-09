@@ -16,6 +16,7 @@
 \newcommand{\modulus}[1]{\lvert#1\rvert}
 \newcommand{\conjugate}[1]{\bar{#1}}
 \newcommand{\degree}{^{\circ}}
+\newcommand{\limit}[2]{\lim_{#1 \rightarrow #2}}
 
 \DeclareMathOperator{\re}{Re}
 \DeclareMathOperator{\im}{Im}
@@ -89,6 +90,7 @@ Vi har da, at
 \end{align}
 
 % 2.2
+\clearpage
 \section
 {
     \mdseries
@@ -99,27 +101,67 @@ I det følgende vil jeg benævne $P(x) = 2x^2 - x - 1$ og
 $Q(x) = x^2 + 3x + 2$, for $x \in [0,\infty[$.
 
 \subsection{\mdseries Tegn funktionens graf med Maple.}
-\begin{figure}[H]
-    \includegraphics[scale=1.0]{figures/2-2a-fig-1.png}
-\end{figure}
+\begin{multicols}{2}
+    \begin{figure}[H]
+        \label{fig:2.2-a}
+        \includegraphics[scale=0.5]{figures/2-2a-fig-1.png}
+        \caption{Graf for $f$ i $x \in [0,100]$}
+    \end{figure}
+    \vfill\columnbreak
+    \begin{figure}[H]
+        \label{fig:2.2b}
+        \includegraphics[scale=0.5]{figures/2-2b-fig-1.png}
+        \caption{Graf for $f'$ i $x \in [0,100]$}
+    \end{figure}
+\end{multicols}
 
 \subsection{\mdseries Udregn den afledede $f'(x)$ (benyt gerne Maple) og vis,
     at den positiv for alle $x \in [0,\infty[$.}
-
 \begin{align}
-    f'(x) &= \frac{P(x)' Q(x) - P(x) Q(x)'}{Q(x)^2} \\
-          &= \frac{P(x)' Q(x)}{Q(x)} - \frac{P(x) Q(x)'}{Q(x)^2} \\
+    f'(x) &= \frac{P(x)' Q(x) - P(x) Q(x)'}{Q(x)^2}
+           = \frac{P(x)' Q(x)}{Q(x)} - \frac{P(x) Q(x)'}{Q(x)^2} \\
           &= \frac{4x - 1}{x^2 + 3x + 2} -
              \frac{(2x^2 - x - 1) (2x + 3)}{(x^2 + 3x + 2)^2}
 \end{align}
 
 \subsection{\mdseries Bestem $\lim_{n \rightarrow \infty}f(n)$ (benyt ikke
     Maple).}
-Det fremgår tydeligt af grafen til $f$ at funktionen har asymptote i $y = 2$,
-dette underbygges også af $f'$, da denne har asymptote i $y = 0$.
+Det fremgår tydeligt af grafen til $f$ at funktionen har asymptote i $y = 2$
+
+Hvis vi først og fremmest dividere $P(x)$ med dets højeste potensled $x^2$,
+kan vi nemmere bestemme grænseværdien for $f$. Så vi har at
+\begin{align}
+    \frac{2x^2 - x - 1}{x^2 + 3x + 2} &= \frac{2 - 1/x - 1/x^2}{1 + 3/x + 2/x^2}
+\end{align}
+
+% todo: skriv hvilken regneregel der anvendes
+Vi bemærker, at alle led hvori $x$ indgår nu er på formen $\frac{k}{x^a}$,
+og siden $\limit{x}{\infty} k \frac{1}{x^a} = k \cdot \left( \limit{x}{\infty}
+\frac{1}{x} \right)^a$, samt reglen om at $\limit{x}{\infty} f(x) + g(x) =
+\limit{x}{\infty} f(x) + \limit{x}{\infty} g(x)$ og vi ved at
+$\limit{x}{\infty} \frac{1}{x} = 0$, har vi, at samtlige af disse led bliver
+nul. Derfor må
+\begin{align}
+    \limit{x}{\infty}
+    \frac{2 - 1/x - 1/x^2}{1 + 3/x + 2/x^2} &= \frac{2}{1} = 2
+    \quad
+    \text{\textnormal altså er}
+    \quad
+    \limit{n}{\infty} f(n) = 2
+\end{align}
 
 \subsection{\mdseries Bestem værdimængden for $f$.}
-$V_f = [-0.5,2[$.
+Den øvre grænse $\limit{x}{\infty} f(x) = 2$ er allerede fundet. Idet vi har
+påvist, at $f'(x) > 0$, $\forall x \in [0, \infty[$ ved vi, at $f$ vil være
+voksende i hele definitionsmængden, og finder da nemt den nedre grænse for
+$f$ ved indsættelse af laveste $x$-værdi;
+\begin{align}
+    f(0) &= \frac{2 \cdot 0^2 - 0 - 1}{0^2 + 3 \cdot 0 + 2}
+          = -\frac{1}{2}
+\end{align}
+
+Altså er værdimængden $V_f = [-0.5,2[$. Bemærk, at den øvre grænse ikke er
+med i værdimængden, da funktionen er asymptote i $y = 2$.
 
 \subsection{\mdseries Lad $\epsilon = 0.1$. Bestem en værdi af $N$, som kan
     anvendes i TL definition 4.3.1, når denne definition benyttes på
@@ -127,6 +169,10 @@ $V_f = [-0.5,2[$.
     af $N$, men du skal argumentere for, at den faktisk kan anvendes. Gentag
     for $\epsilon = 0.01$.}
 ...
+\begin{align}
+    |a_n - a| &= \left| \frac{2n^2 - n - 1}{n^2 + 3n + 2} - 2 \right|
+               = \left|  \right|
+\end{align}
 
 
 % 2.3(iv)
@@ -159,7 +205,21 @@ $V_f = [-0.5,2[$.
     begyndelsesbetingelserne $F_1$, $F_2$ i vores tilfælde? Bestem, hvor
     mange kaninpar der således vil være efter 1 år.
 }
-...
+I første måned har vi det nyfødte kaninpar, og dermed er $F_1 = 1$. Ved
+begyndelsen af anden måned antages hunkaninen, at være drægtig, og siden en
+drægtighedsperioden er en måned, så må $F_2 = 1$ også. Det er altså først i
+tredje måned, hvor det første kuld fødes.
+\begin{align}
+    F_1 = 1
+    \qquad
+    F_2 = 1
+\end{align}
+I ord, kan man sige at $F_{n+2}$ er antallet af kaninpar, som under disse
+ideelle omstændigheder, kan produceres af den foregående generation $F_n$,
+samt den nye generation $F_{n+1}$.
+\begin{align}
+    F_{12} = 144
+\end{align}
 
 \subsection
 {
@@ -171,7 +231,25 @@ $V_f = [-0.5,2[$.
     \frac{F_{n+1}}{F_n}$. Udregn vækstraten for $n = 1, 2, \dots, 12$ og
     illustrer de beregnede værdier af $a_n$ ved brug Maple.
 }
-...
+Vi viser først, at $F_n$ opfylder uligheden for $n=1$
+\begin{align}
+    F_1 \leq F_{1+1} \leq 2F_1 &= 1 \leq 1 \leq 2
+\end{align}
+Dernæst viser vi, at $F_n$ opfylder uligheden for $n=k$, hvor $k \in
+\mathbb{N}$, altså
+\begin{align}
+    F_k \leq F_{k+1} \leq 2F_k
+    &\implies
+    F_{k-2} + F_{k-1} \leq F_{k-1} + F_{k} \leq 2F_{k-2} + 2F_{k-1} \\
+    &\implies
+    F_{k-2} \leq F_{k} \leq 2F_{k-2} + F_{k-1} \\
+    &\implies
+    0 \leq F_{k} - F_{k-2} \leq F_{k-2} + F_{k-1} \\
+    &\implies
+    0 \leq F_{k} - F_{k-2} \leq F_{k}
+\end{align}
+Det er tydeligt at se, at $F_n$ opfylder uligheden idet $0 \leq k - a \leq k$,
+$\forall k, a \in \mathbb{N}$.
 
 \subsection
 {
