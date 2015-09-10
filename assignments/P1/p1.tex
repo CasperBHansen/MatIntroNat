@@ -18,6 +18,8 @@
 \newcommand{\degree}{^{\circ}}
 \newcommand{\limit}[2]{\lim_{#1 \rightarrow #2}}
 
+\newcommand{\figref}[1]{fig. \ref{fig:#1}}
+
 \DeclareMathOperator{\re}{Re}
 \DeclareMathOperator{\im}{Im}
 
@@ -55,30 +57,24 @@
 Jvf. sætning 3.4.5[TL] har vi, at
 \begin{align}
     z &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \\
-      &= \frac{-(-2i)z \pm \sqrt{(-2i)^2 - 4 \cdot 1 \cdot (1 + i)}}{2 \cdot 1} \\
-      &= iz \pm \frac{\sqrt{(-2i)^2 - (4 + 4i)}}{2} \\
-      &= iz \pm \frac{1}{2} \sqrt{(-8 - 4i)}
+      &= \frac{-(-2i) \pm \sqrt{(-2i)^2 - 4 \cdot 1 \cdot (1 + i)}}{2 \cdot 1} \\
+      &= i \pm \frac{\sqrt{(-2i)^2 - (4 + 4i)}}{2} \\
+      &= i \pm \frac{1}{2} \sqrt{(-8 - 4i)} \\
+      &= i \pm \frac{1}{2} 2 \sqrt{(-2 - i)} \\
+      &= i \pm \sqrt{(-2 - i)}
 \end{align}
-Vi skal nu finde kvadratroden til $(-8 - 4i)$. Vi bestemme da først modulus;
+Vi skal nu finde kvadratroden til $(-2 - i)$. Vi bestemme da først modulus;
 \begin{align}
-    \modulus{(-8 - 4i)} &= \sqrt{(-8)^2 + (-4)^2}
-                         = \sqrt{64 + 16}
-                         = \sqrt{80}
-                         = \sqrt{2^4 \cdot 5}
-                         = 4 \sqrt{5}
+    \modulus{(-2 - i)} &= \sqrt{(-2)^2 + (-1)^2}
+                        = \sqrt{4 + 1}
+                        = \sqrt{5}
 \end{align}
 Til bestemmelse af argumentet har vi, at
 \begin{align}
-    \cos \theta = \frac{-8}{4 \sqrt{5}}
-                = \frac{-2}{\sqrt{5}}
-                = \frac{-2}{5} \sqrt{5}
-    \quad
-    \sin \theta = \frac{-4}{4 \sqrt{5}}
-                = \frac{-1}{\sqrt{5}}
-                = \frac{-1}{5} \sqrt{5}
-\end{align}
-Endvidere har vi da, at
-\begin{align}
+    \cos \theta = \frac{-2}{\sqrt{5}}
+    \qquad
+    \sin \theta = \frac{-1}{\sqrt{5}}
+    \qquad
     \tan \theta = \frac{\sin \theta}{\cos \theta}
                 = \frac{-1 / \sqrt{5}}{-2 / \sqrt{5}}
                 = \frac{-1}{-2}
@@ -86,7 +82,39 @@ Endvidere har vi da, at
 \end{align}
 Vi har da, at
 \begin{align}
-    (-8 - 4i) &= 4 \sqrt{5} e^{\arctan(\frac{1}{2}) i}
+    \sqrt{(-2 - i)}
+    &= \sqrt{5} e^{\arctan(\frac{1}{2}) i}
+     = \sqrt{5} \left(
+        \cos \left( \arctan \left( \frac{1}{2} \right) \right)
+        + i \sin \left( \arctan \left( \frac{1}{2} \right) \right) \right) \\
+\iffalse
+    &= \sqrt{5} \left(
+       \cos \left( \frac{ \sin(-1 / \sqrt{5}) }{ \cos(-2 / \sqrt{5})} \right)
+   + i \sin \left( \frac{ \sin(-1 / \sqrt{5}) }{ \cos(-2 / \sqrt{5})} \right)
+     \right) \\
+    &= \sqrt{5} \left(
+       \cos \left( \frac{ \sin(1 / \sqrt{5}) }{ \cos(2 / \sqrt{5})} \right)
+   + i \sin \left( \frac{ \sin(1 / \sqrt{5}) }{ \cos(2 / \sqrt{5})} \right)
+     \right) \\
+\fi
+   &= \sqrt{5} \left( \frac{1}{\sqrt{1 + \frac{1}{2}^2}}
+   + i \frac{ \frac{1}{2} }{\sqrt{1 + \frac{1}{2}^2}}\right)
+    = \sqrt{5} \left( \frac{1 + i \frac{1}{2}}{\sqrt{1 + \left( \frac{1}{2} \right)^2}} \right)
+    = \sqrt{5} \left( \frac{1 + i \frac{1}{2}}{\sqrt{5 \left( \frac{1}{2} \right)^2 }} \right) \\
+   &= \sqrt{5} \left( \frac{1 + i \frac{1}{2}}{\frac{1}{2} \sqrt{5}} \right)
+    = \frac{1 \sqrt{5} + i \frac{1}{2} \sqrt{5}}{\frac{1}{2} \sqrt{5}}
+    = \frac{1 + i \frac{1}{2}}{\frac{1}{2}}
+    = 2 + i
+\end{align}
+
+Vi fortsætter da vores udregning fra (6), ved at erstatte $\sqrt{(-2 - i)}$
+med den beregnede $2 + i$, og får løsningerne
+\begin{align}
+    z_1 = i + (2 + i) = 2 + 2i
+    \qquad
+    \text{og}
+    \qquad
+    z_2 = i - (2 + i) = -2
 \end{align}
 
 % 2.2
@@ -168,12 +196,55 @@ med i værdimængden, da funktionen er asymptote i $y = 2$.
     grænseovergangen i (c). Du må gerne benytte Maple til at finde en værdi
     af $N$, men du skal argumentere for, at den faktisk kan anvendes. Gentag
     for $\epsilon = 0.01$.}
-...
+Først beregner vi $\modulus{a_n - a}$
 \begin{align}
     |a_n - a| &= \left| \frac{2n^2 - n - 1}{n^2 + 3n + 2} - 2 \right|
-               = \left|  \right|
+               = \left| \frac{2n^2 - n - 1}{n^2 + 3n + 2} - 2
+                        \frac{n^2 + 3n + 2}{n^2 + 3n + 2} \right| \\
+              &= \left| \frac{2n^2 - n - 1 - 2(n^2 + 3n + 2)}
+                             {n^2 + 3n + 2} \right| \\
+              &= \left| \frac{2n^2 - n - 1 - 2n^2 - 6n - 4}
+                             {n^2 + 3n + 2} \right|
+               = \left| \frac{-7n - 5}{n^2 + 3n + 2} \right| \\
+              &= \frac{7n + 5}{n^2 + 3n + 2}
+\end{align}
+Da vi nu kender $\modulus{a_n - a}$ skal vi finde en passende værdi af $N$,
+således at
+
+\iffalse
+
+\begin{align}
+    \modulus{a_n - a} = \frac{7n + 5}{n^2 + 3n + 2} < \epsilon \implies
+    \frac{n^2 + 3n + 2}{7n + 5} &> \epsilon^{-1} \\
+    n^2 + 2n + 2 &> (7n + 5) \epsilon^{-1} \\
+    \epsilon(n^2 + 2n + 2) &> 7n + 5 \\
+    \epsilon n^2 + \epsilon 2n + \epsilon 2) &> 7n + 5 \\
+\end{align}
+Hvis vi dividerer polynomierne vha. $\frac{P(x)}{Q(x)} = K(x) +
+\frac{R(x)}{Q(x)}$ har vi, at
+\begin{align}
+    \frac{n^2 + 3n + 2}{7n + 5}
+    &= \frac{n}{7} + \frac{16}{49} + \frac{18 / 49}{(7n + 5)}
 \end{align}
 
+Hvis vi dividerer polynomierne vha. $P(x) = K(x) Q(x) + R(x)$ har vi, at
+\begin{align}
+    n^2 + 3n + 2 &= \left( \frac{n}{7} + \frac{16}{49} \right)
+                    \left( 7n + 5 \right)
+                  + \frac{18}{49}
+\end{align}
+
+\fi
+
+
+Jeg benytter mig af Maple til, at finde disse værdier, og får at
+\begin{align}
+    N > 67.70891697 \text{, for } \epsilon = 0.1
+    \qquad
+    \text{og}
+    \qquad
+    N > 697.7137598 \text{, for } \epsilon = 0.01
+\end{align}
 
 % 2.3(iv)
 \section
@@ -251,6 +322,20 @@ Dernæst viser vi, at $F_n$ opfylder uligheden for $n=k$, hvor $k \in
 Det er tydeligt at se, at $F_n$ opfylder uligheden idet $0 \leq k - a \leq k$,
 $\forall k, a \in \mathbb{N}$.
 
+\begin{multicols}{2}
+    \begin{figure}[H]
+        \includegraphics[scale=0.5]{figures/2-3b-fig-1.png}
+        \caption{Grafen for $F_n$ i $n \in [1,12]$}
+        \label{fig:2.3b-1}
+    \end{figure}
+    \vfill\columnbreak
+    \begin{figure}[H]
+        \includegraphics[scale=0.5]{figures/2-3b-fig-2.png}
+        \caption{Grafen for $a_n$ i $n \in [1,12]$}
+        \label{fig:2.3b-2}
+    \end{figure}
+\end{multicols}
+
 \subsection
 {
     \mdseries
@@ -264,7 +349,17 @@ $\forall k, a \in \mathbb{N}$.
     \frac{1}{a_n}$ ud fra (1) og se, hvad der sker når $n \rightarrow
     \infty$.]
 }
-...
+Det lader til, at $F_{2n - 1} < k < F_{2n}$, $\forall n \in \mathbb{N}$, og
+$a_{n+1} < a_n$. Med andre ord, $F_n < a_n$, hvis $n$ er ulige og omvendt er
+$F_n > a_n$, hvis $n$ er lige. Dermed, så må $a_n$ konvergere mod $k$.
+
+Det ses også tydeligt på grafen for $a_n$ i \figref{2.3b-2}, at forholdet
+mellem $F_{n+1}$ og $F_n$ konvergerer mod et tal $k$.
+
+Vi opstiller rekursionsformlen, som angivet
+\begin{align}
+    a_{n+1} &= 1 + \frac{1}{a_n}
+\end{align}
 
 \subsection
 {
@@ -274,6 +369,19 @@ $\forall k, a \in \mathbb{N}$.
     \gamma F_{n+1}$, med $\alpha \in \mathbb{N}$ og $\gamma \in ]0,1[$,
     hvad ville modellen så beskrive? Er dette en mere realistisk model?
 }
-...
+I første tilfælde, hvor $F_{n+2} = F_n + F_{n+1} - \alpha$, hvor $\alpha \in
+\mathbb{N}$, beskriver modellen et statisk dødsfald, hver måned, uafhængigt
+af kaninbestanden. Denne model er lidt mere realistisk end den oprindelige.
+
+For det andet tilfælde, hvor $F_{n+2} = F_n + F_{n+1} - \gamma F_{n+1}$,
+hvor $\gamma \in ]0,1[$, beskriver modellen da et dynamisk procentvis
+dødsfald i den forrige generation $F_{n+1}$. Idet $0 < \gamma < 1$ er vi
+sikre på, at en hvis procentdel af den forrige generation dør, men aldrig
+hele generationen. Antal dødsfald i den forrige generation kan altså
+beskrives ved $\gamma F_{n+1}$, eller modsat antal overlevende kan beskrives
+ved $(1 - \gamma) F_{n+1}$ og dødsfaldsprocenten kan beskrives ved $1 -
+\gamma$ --- ved omformulering af udtrykket har vi da, at $F_{n+2} = F_n + (1
+- \gamma) F_{n+1}$. Denne model er nok den mest realistiske, da dødsfaldet
+afhænger af bestanden.
 
 \end{document}
