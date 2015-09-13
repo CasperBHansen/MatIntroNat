@@ -19,6 +19,7 @@
 \newcommand{\limit}[2]{\lim_{#1 \rightarrow #2}}
 
 \newcommand{\figref}[1]{fig. \ref{fig:#1}}
+\newcommand{\eqnref}[1]{(\ref{eqn:#1})}
 
 \DeclareMathOperator{\re}{Re}
 \DeclareMathOperator{\im}{Im}
@@ -56,12 +57,13 @@
 }
 Jvf. sætning 3.4.5[TL] har vi, at
 \begin{align}
-    z &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \\
-      &= \frac{-(-2i) \pm \sqrt{(-2i)^2 - 4 \cdot 1 \cdot (1 + i)}}{2 \cdot 1} \\
-      &= i \pm \frac{\sqrt{(-2i)^2 - (4 + 4i)}}{2} \\
-      &= i \pm \frac{1}{2} \sqrt{(-8 - 4i)} \\
-      &= i \pm \frac{1}{2} 2 \sqrt{(-2 - i)} \\
-      &= i \pm \sqrt{(-2 - i)}
+    z &= \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+       = \frac{-(-2i) \pm \sqrt{(-2i)^2 - 4 \cdot 1 \cdot (1 + i)}}{2 \cdot 1}
+       = i \pm \frac{\sqrt{(-2i)^2 - (4 + 4i)}}{2} \\
+      &= i \pm \frac{1}{2} \sqrt{(-8 - 4i)}
+       = i \pm \frac{1}{2} 2 \sqrt{(-2 - i)}
+       = i \pm \sqrt{(-2 - i)}
+       \label{eqn:complex-square}
 \end{align}
 Vi skal nu finde kvadratroden til $(-2 - i)$. Vi bestemme da først modulus;
 \begin{align}
@@ -87,16 +89,6 @@ Vi har da, at
      = \sqrt{5} \left(
         \cos \left( \arctan \left( \frac{1}{2} \right) \right)
         + i \sin \left( \arctan \left( \frac{1}{2} \right) \right) \right) \\
-\iffalse
-    &= \sqrt{5} \left(
-       \cos \left( \frac{ \sin(-1 / \sqrt{5}) }{ \cos(-2 / \sqrt{5})} \right)
-   + i \sin \left( \frac{ \sin(-1 / \sqrt{5}) }{ \cos(-2 / \sqrt{5})} \right)
-     \right) \\
-    &= \sqrt{5} \left(
-       \cos \left( \frac{ \sin(1 / \sqrt{5}) }{ \cos(2 / \sqrt{5})} \right)
-   + i \sin \left( \frac{ \sin(1 / \sqrt{5}) }{ \cos(2 / \sqrt{5})} \right)
-     \right) \\
-\fi
    &= \sqrt{5} \left( \frac{1}{\sqrt{1 + \frac{1}{2}^2}}
    + i \frac{ \frac{1}{2} }{\sqrt{1 + \frac{1}{2}^2}}\right)
     = \sqrt{5} \left( \frac{1 + i \frac{1}{2}}{\sqrt{1 + \left( \frac{1}{2} \right)^2}} \right)
@@ -107,8 +99,8 @@ Vi har da, at
     = 2 + i
 \end{align}
 
-Vi fortsætter da vores udregning fra (6), ved at erstatte $\sqrt{(-2 - i)}$
-med den beregnede $2 + i$, og får løsningerne
+Vi fortsætter da vores udregning fra \eqnref{complex-square}, ved at erstatte
+$\sqrt{(-2 - i)}$ med den beregnede $2 + i$, og får løsningerne
 \begin{align}
     z_1 = i + (2 + i) = 2 + 2i
     \qquad
@@ -116,6 +108,8 @@ med den beregnede $2 + i$, og får løsningerne
     \qquad
     z_2 = i - (2 + i) = -2
 \end{align}
+
+Se vedhæftede tegning for illustration af løsningerne.
 
 % 2.2
 \clearpage
@@ -144,13 +138,34 @@ $Q(x) = x^2 + 3x + 2$, for $x \in [0,\infty[$.
 \end{multicols}
 
 \subsection{\mdseries Udregn den afledede $f'(x)$ (benyt gerne Maple) og vis,
-    at den positiv for alle $x \in [0,\infty[$.}
+    at den er positiv for alle $x \in [0,\infty[$.}
 \begin{align}
-    f'(x) &= \frac{P(x)' Q(x) - P(x) Q(x)'}{Q(x)^2}
-           = \frac{P(x)' Q(x)}{Q(x)} - \frac{P(x) Q(x)'}{Q(x)^2} \\
-          &= \frac{4x - 1}{x^2 + 3x + 2} -
-             \frac{(2x^2 - x - 1) (2x + 3)}{(x^2 + 3x + 2)^2}
+    f'(x) &= \left( \frac{P(x)}{Q(x)} \right)'
+           = \frac{P(x)' Q(x) - P(x) Q(x)'}{Q(x)^2} \\
+          &= \frac{(4x - 1)(x^2 + 3x + 2) - (2x^2 - x - 1)(2x + 3)}
+                  {(x^2 + 3x + 2)^2} \\
+          &= \frac{7x^2 + 10x + 1}{(x^2 + 3x + 2)^2}
+           = (7x^2 + 10x + 1) Q(x)^{-2}
+           \label{eqn:f'}
 \end{align}
+
+En måde, at vise $f'$ er positiv i intervallet $[0,\infty[$ er, at bemærke at
+begge andengradspolynomierne $7x^2 + 10x + 1$ hhv. $x^2 + 3x + 2$ består
+udelukkende af positive koefficienter. Vi ser bla., at deres skæring med
+andenaksen er $c = 1$ hhv. $c = 2$. Ydermere, så er deres afledte funktioners
+skæring med andenaksen $b = 10$ hhv. $b = 3$. Det fremgår af $(ax^2 + bx + c)'
+= 2ax + b$. Hvilket betyder at tilvæksten for begge må nødvendigvis være
+positiv i $x = 0$. Sidst, men ikke mindst, så ved vi, at andengradspolynomier
+har et og kun ét lokalt ekstremum, og når $a > 0$ er parablen konveks og
+derfor er dette ekstremum et lokalt minimum. Når vi nu ved, at deres afledte
+har positiv tilvækst i $x = 0$, må tangenten i dette punkt nødvendigvis
+tilhøre højresiden af parablen --- hvilket jo så medfører, at tangenten vokser
+når $x \rightarrow \infty$.
+
+En mere koncis måde, kunne være at påvise at $f'$ har kun negative rødder;
+$-\frac{5}{7} + \frac{3}{7} \sqrt{2}$ hhv. $-\frac{5}{7} - \frac{3}{7}
+\sqrt{2}$, og da $f'(0) = \frac{1}{4}$ følger det, at $f'(x) > 0$, $\forall x
+\in [0,\infty[$.
 
 \subsection{\mdseries Bestem $\lim_{n \rightarrow \infty}f(n)$ (benyt ikke
     Maple).}
@@ -162,7 +177,6 @@ kan vi nemmere bestemme grænseværdien for $f$. Så vi har at
     \frac{2x^2 - x - 1}{x^2 + 3x + 2} &= \frac{2 - 1/x - 1/x^2}{1 + 3/x + 2/x^2}
 \end{align}
 
-% todo: skriv hvilken regneregel der anvendes
 Vi bemærker, at alle led hvori $x$ indgår nu er på formen $\frac{k}{x^a}$,
 og siden $\limit{x}{\infty} k \frac{1}{x^a} = k \cdot \left( \limit{x}{\infty}
 \frac{1}{x} \right)^a$, samt reglen om at $\limit{x}{\infty} f(x) + g(x) =
@@ -209,7 +223,7 @@ Først beregner vi $\modulus{a_n - a}$
               &= \frac{7n + 5}{n^2 + 3n + 2}
 \end{align}
 Da vi nu kender $\modulus{a_n - a}$ skal vi finde en passende værdi af $N$,
-således at
+således at $\frac{7n + 5}{n^2 + 3n + 2} < \epsilon$
 
 \iffalse
 
@@ -236,14 +250,23 @@ Hvis vi dividerer polynomierne vha. $P(x) = K(x) Q(x) + R(x)$ har vi, at
 
 \fi
 
-
 Jeg benytter mig af Maple til, at finde disse værdier, og får at
 \begin{align}
-    N > 67.70891697 \text{, for } \epsilon = 0.1
+    N_1 = 67.70891697 \text{, for } \epsilon_1 = 0.1
     \qquad
     \text{og}
     \qquad
-    N > 697.7137598 \text{, for } \epsilon = 0.01
+    N_2 = 697.7137598 \text{, for } \epsilon_2 = 0.01
+\end{align}
+
+Vi bemærker, at $\limit{n}{\infty} \modulus{a_n - a} = 0$. Dvs. udtrykket
+går altså imod nul som $n$ bevæger sig mod $\infty$, og $0 < \epsilon_2 <
+\epsilon_1$. Derfor holder
+\begin{align}
+    \modulus{a_n - a} &= \frac{7n + 5}{n^2 + 3n + 2} < \epsilon_1
+    \text{, hvis og kun hvis } n > N_1 \\
+    \modulus{a_n - a} &= \frac{7n + 5}{n^2 + 3n + 2} < \epsilon_2
+    \text{, hvis og kun hvis } n > N_2
 \end{align}
 
 % 2.3(iv)
@@ -288,9 +311,20 @@ tredje måned, hvor det første kuld fødes.
 I ord, kan man sige at $F_{n+2}$ er antallet af kaninpar, som under disse
 ideelle omstændigheder, kan produceres af den foregående generation $F_n$,
 samt den nye generation $F_{n+1}$.
+
+Til bestemmelse af antal kaninpar, med disse startbetingelser, efter 1 år,
+har vi at
 \begin{align}
-    F_{12} = 144
+    F_{12} &= F_{10} + F_{11} \\
+           &= F_8 + 2 F_9 + F_{10} \\
+           &= F_6 + 3 F_7 + 3 F_8 + F_9 \\
+           &= F_4 + 4 F_5 + 6 F_6 + 4 F_7 + F_8 \\
+           &= F_2 + 5 F_3 + 10 F_4 + 10 F_5 + 5 F_6 + F_7 \\
+           &\vdots \\
+           &= 144 F_1 = 144
 \end{align}
+
+Bemærk, at koefficienterne i lignerne ovenfor følger Pascal's trekant.
 
 \subsection
 {
@@ -356,9 +390,30 @@ $F_n > a_n$, hvis $n$ er lige. Dermed, så må $a_n$ konvergere mod $k$.
 Det ses også tydeligt på grafen for $a_n$ i \figref{2.3b-2}, at forholdet
 mellem $F_{n+1}$ og $F_n$ konvergerer mod et tal $k$.
 
-Vi opstiller rekursionsformlen, som angivet
+Vi opstiller forholdet, og beregner
 \begin{align}
-    a_{n+1} &= 1 + \frac{1}{a_n}
+    a_n &= \frac{F_{n+1}}{F_n}
+         = \frac{F_{n-1} + F_n}{F_n}
+         = \frac{F_{n-1}}{F_n} + \frac{F_n}{F_n}
+         = 1 + \frac{F_{n-1}}{F_n}
+         = 1 + \frac{F_{n-1}}{F_n}
+         = 1 + \frac{1}{F_n / F_{n-1}}
+         = 1 + \frac{1}{a_{n-1}}
+\end{align}
+
+Vi ser nu på, hvad grænseværdien $a = \limit{n}{\infty} \left( 1 +
+\frac{1}{a_{n-1}} \right)$
+\begin{align}
+    \limit{n}{\infty} a_n &= 1 + \frac{1}{\limit{n}{\infty} a_{n-1}}
+    \implies a = 1 + \frac{1}{a}
+    \implies a^2 = a + 1
+    \implies a^2 - a - 1 = 0
+\end{align}
+
+Dette er en andengradspolynomium, for hvilket vi kan løse for $a$
+\begin{align}
+    a &= \frac{-(-1) \pm \sqrt{(-1)^2 - 4 \cdot 1 \cdot (-1)}}{2 \cdot 1}
+       = \frac{1 \pm \sqrt{5}}{2}
 \end{align}
 
 \subsection
