@@ -9,6 +9,9 @@
 \usepackage{graphicx}
 \usepackage{listings}
 \usepackage{multicol}
+\usepackage{tikz}
+
+\usetikzlibrary{arrows}
 
 %==============================================================================%
 
@@ -99,17 +102,52 @@ Vi har da, at
     = 2 + i
 \end{align}
 
-Vi fortsætter da vores udregning fra \eqnref{complex-square}, ved at erstatte
-$\sqrt{(-2 - i)}$ med den beregnede $2 + i$, og får løsningerne
-\begin{align}
-    z_1 = i + (2 + i) = 2 + 2i
-    \qquad
-    \text{og}
-    \qquad
-    z_2 = i - (2 + i) = -2
-\end{align}
+\begin{multicols*}{2}
+    Vi fortsætter da vores udregning fra \eqnref{complex-square}, ved at
+    erstatte $\sqrt{(-2 - i)}$ med den beregnede $2 + i$, og får løsningerne
+    \begin{align*}
+        z_1 &= i + (2 + i) = 2 + 2i \\
+        z_2 &= i - (2 + i) = -2
+    \end{align*}
+    
+    Som illustreret i \figref{z1&z2} til højre, er $z_1$ et komplekst tal,
+    hvorimod $z_2$ er et reelt talt, da det ikke har nogen imaginær komposant.
 
-Se vedhæftede tegning for illustration af løsningerne.
+    \vfill{\ }\columnbreak
+
+    \begin{figure}[H]
+        \begin{tikzpicture}[
+            scale=0.75,
+            axis/.style={very thick, <->, >=stealth'},
+            vector/.style={thick, ->,color=red},
+            important line/.style={thick},
+            dashed line/.style={dashed, thin},
+            pile/.style={thick, ->, >=stealth', shorten <=2pt, shorten
+            >=2pt},
+            every node/.style={color=black}
+            ]
+            % axis
+            \draw[axis] (-3,0)  -- (3,0) node(xline)[right]{$Re$};
+            \draw[axis] (0,-3) -- (0,3) node(yline)[above]{$Im$};
+
+            \draw (-2.0, -0.1) -- (-2.0, 0.1);
+            \draw (-1.0, -0.1) -- (-1.0, 0.1);
+            \draw ( 1.0, -0.1) -- ( 1.0, 0.1);
+            \draw ( 2.0, -0.1) -- ( 2.0, 0.1);
+
+            \draw (-0.1, -2.0) -- (0.1, -2.0);
+            \draw (-0.1, -1.0) -- (0.1, -1.0);
+            \draw (-0.1,  1.0) -- (0.1,  1.0);
+            \draw (-0.1,  2.0) -- (0.1,  2.0);
+
+            \draw[vector] (0.0, 0.0) -- ( 2.0, 2.0) node(z1)[above]{$z_1$};
+            \draw[vector] (0.0, 0.0) -- (-2.0, 0.0) node(z2)[above]{$z_2$};
+
+        \end{tikzpicture}
+        \caption{Illustration af løsningerne $z_1$ og $z_2$ i den komplekse plan}
+        \label{fig:z1&z2}
+    \end{figure}
+\end{multicols*}
 
 % 2.2
 \clearpage
