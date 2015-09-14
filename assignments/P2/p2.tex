@@ -1,0 +1,161 @@
+\documentclass[11pt,a4paper]{article}
+
+%==============================================================================%
+
+\usepackage{a4wide}
+\usepackage{amsmath,amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{tikz}
+
+\usetikzlibrary{arrows}
+
+%==============================================================================%
+
+\newcommand{\assignmentnumber}{3}
+
+\newcommand{\modulus}[1]{\lvert#1\rvert}
+\newcommand{\conjugate}[1]{\bar{#1}}
+\newcommand{\degree}{^{\circ}}
+\newcommand{\limit}[2]{\lim_{#1 \rightarrow #2}}
+
+\newcommand{\figref}[1]{fig. \ref{fig:#1}}
+\newcommand{\eqnref}[1]{(\ref{eqn:#1})}
+
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\im}{Im}
+
+\renewcommand\thesection{\assignmentnumber.\arabic{section}}
+\renewcommand\thesubsection{\alph{subsection})}
+
+%==============================================================================%
+
+\title{MatIntro Pointopgave \assignmentnumber}
+\author
+{
+    Casper B. Hansen\\
+    University of Copenhagen\\
+    {\tt fvx507@alumni.ku.dk}
+}
+\date{\today}
+
+%==============================================================================%
+
+\begin{document}
+
+% \maketitle
+
+
+% 3.1
+\section
+{
+    \mdseries
+    Lad $f(x) = \frac{1}{x} - \frac{\cos x}{\sin x}$ for alle $x \in
+    \mathbb{R}$ med $x \neq n\pi, n \in \mathbb{Z}$.
+}
+
+% 3.1 (a)
+\subsection
+{
+    \mdseries
+    Find grænseværdierne $\limit{x}{0+} f(x)$, $\limit{x}{\pi-} f(x)$ først
+    med og dernæst uden Maple.
+}
+...
+
+Uden Maple,
+
+% 3.1 (b)
+\subsection
+{
+    \mdseries
+    Vis, at $f$ er strengt voksende i hvert interval $(n\pi,(n+1)\pi)$.
+    Uligheden $\modulus{\sin x} < \modulus{x}$ for $x \neq 0$ kan benyttes
+    uden bevis (den er vist i TLO side 240).
+}
+...
+
+% 3.1 (c)
+\subsection
+{
+    \mdseries
+    Bevis, at ligningen $f(x) = 0$ ikke har nogen løsninger i $(0, \pi)$, og
+    at den har præcis én løsning i $(\pi,2\pi)$. Benyt Maple til at finde en
+    approksimering til denne løsning.
+}
+...
+
+
+% 3.2
+\section
+{
+    \mdseries
+    En funktion $f : \mathbb{R} \rightarrow \mathbb{R}$ defineres ved
+    \eqnref{3.2}
+}
+\begin{align}
+    f(x) &=
+    \begin{cases}
+        \frac{1 - x^2}{(x -1)(x - 3)} &x \in (-\infty;1) \cup (3;\infty) \\
+        x &x \in [1;3]
+    \end{cases}
+    \label{eqn:3.2}
+\end{align}
+
+% 3.2 (a)
+\subsection
+{
+    \mdseries
+    Lav i Maple et plot af et udsnit af grafen for $f$, der giver et
+    retvisende og oplysende billede af funktionens overordnede opførsel.
+}
+...
+
+% 3.2 (b)
+\subsection
+{
+    \mdseries
+    Er $f$ differentiabel i $x=1$? Begrund dit svar uden brug af Maple.
+}
+...
+
+
+% 3.3 (iii)
+\section
+{
+    (iii) \mdseries
+    Betragt funktionen $f(x) = x(\ln(x + 1) - \ln x), x > 0$.
+}
+
+% 3.3 (iii) (a)
+\subsection
+{
+    \mdseries
+    Tegn grafen for $0 < x \leq 100$ og gæt på $\limit{x}{\infty} f(x)$ ud
+    fra denne.
+}
+...
+
+% 3.3 (iii) (b)
+\subsection
+{
+    \mdseries
+    Beregn i Maple $f(10^n)$ for $n = 1, \dots, 10$ (brug f. eks. værdien 20
+    af Digits=antal decimaler). Gæt igen på $\limit{x}{\infty} f(x)$ ud fra
+    disse tal.
+}
+...
+
+% 3.3 (iii) (c)
+\subsection
+{
+    \mdseries
+    Bestem $\limit{x}{\infty} f(x)$ uden brug af Maple. Kommenter resultaterne
+    fra (a) og (b).
+}
+...
+
+\end{document}
