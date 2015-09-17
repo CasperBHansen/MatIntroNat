@@ -56,6 +56,10 @@
     Lad $f(x) = \frac{1}{x} - \frac{\cos x}{\sin x}$ for alle $x \in
     \mathbb{R}$ med $x \neq n\pi, n \in \mathbb{Z}$.
 }
+Til følgende opgaver defineres følgende erklæres følgende udsagn i Maple.
+\begin{lstlisting}
+    f := x -> (1/x) - cos(x)/sin(x)
+\end{lstlisting}
 
 % 3.1 (a)
 \subsection
@@ -64,9 +68,17 @@
     Find grænseværdierne $\limit{x}{0+} f(x)$, $\limit{x}{\pi-} f(x)$ først
     med og dernæst uden Maple.
 }
-...
+I Maple skriver vi følgende
+\begin{lstlisting}
+    limit(f(x), x=0, right);
+    limit(f(x), x=pi, left);
+\end{lstlisting}
+og får resultaterne $0$ hhv. $\frac{1}{\pi} - \frac{\cos \pi}{\sin \pi}$.
 
-Uden Maple,
+Ved håndregning benytter vi reglen $\limit{x}{a} f(x) + g(x) = \limit{x}{a}
+f(x) + \limit{x}{a} g(x)$, og ser at førsteledet $\limit{x}{0+} \frac{1}{x} =
+\infty$ og $\limit{x}{0+} \frac{\cos x}{\sin x} = -\infty$ [TODO: UDDYB]. Vi
+har derfor, at $\limit{x}{0+} f(x) = \infty - \infty = 0$.
 
 % 3.1 (b)
 \subsection
