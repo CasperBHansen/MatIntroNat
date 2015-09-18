@@ -117,6 +117,17 @@ har derfor, at $\limit{x}{0+} f(x) = \infty - \infty = 0$.
     \label{eqn:3.2}
 \end{align}
 
+I Maple har jeg erklæret funktionen, som følger
+\begin{lstlisting}
+c1 := x -> x < 1 or x > 3
+c2 := x -> 1 <= x <= 3
+
+f1 := x -> (1 - x^2) / ((x - 1)(x - 3))
+f2 := x -> x
+
+f  := x -> piecewise(c1(x), f1(x), c2(x), f2(x))
+\end{lstlisting}
+
 % 3.2 (a)
 \subsection
 {
@@ -124,7 +135,6 @@ har derfor, at $\limit{x}{0+} f(x) = \infty - \infty = 0$.
     Lav i Maple et plot af et udsnit af grafen for $f$, der giver et
     retvisende og oplysende billede af funktionens overordnede opførsel.
 }
-...
 \begin{multicols}{2}
     ...
 
@@ -161,7 +171,20 @@ har derfor, at $\limit{x}{0+} f(x) = \infty - \infty = 0$.
     Tegn grafen for $0 < x \leq 100$ og gæt på $\limit{x}{\infty} f(x)$ ud
     fra denne.
 }
-...
+\begin{multicols}{2}
+    ...
+
+    \vfill{\ }\columnbreak
+
+    \begin{figure}[H]
+        % \includegraphics[scale=0.5]{figures/3-3(iii)-1.png}
+        \caption{Grafen for $f$ i intervallet $x \in [0,100]$}
+        \label{fig:3.3(iii)a-1}
+    \end{figure}
+
+\end{multicols}
+
+
 
 % 3.3 (iii) (b)
 \subsection
