@@ -1,0 +1,95 @@
+\documentclass[11pt,a4paper]{article}
+
+%==============================================================================%
+
+\usepackage{a4wide}
+\usepackage{amsmath,amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{tikz}
+
+\usetikzlibrary{arrows}
+
+%==============================================================================%
+
+\newcommand{\assignmentnumber}{4}
+\newcommand{\modulus}[1]{\lvert#1\rvert}
+\newcommand{\conjugate}[1]{\bar{#1}}
+\newcommand{\degree}{^{\circ}}
+\newcommand{\limit}[2]{\lim_{#1 \rightarrow #2}}
+
+\newcommand{\figref}[1]{fig. \ref{fig:#1}}
+\newcommand{\eqnref}[1]{(\ref{eqn:#1})}
+
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\im}{Im}
+
+\renewcommand\thesection{\assignmentnumber.\arabic{section}}
+\renewcommand\thesubsection{\alph{subsection})}
+
+%==============================================================================%
+
+\title{MatIntro Lynopgave \assignmentnumber}
+\author
+{
+    Casper B. Hansen\\
+    University of Copenhagen\\
+    {\tt fvx507@alumni.ku.dk}
+}
+\date{\today}
+
+%==============================================================================%
+
+\begin{document}
+
+% \maketitle
+
+
+% 4.1
+\section
+{
+    \mdseries
+    Løs differentialligningen $(1 + x^2)(yy') = x(1 + y^2)$ med hver af
+    begyndelsesbetingelserne $y(3) = 1$, $y(3) = 3$ og $y(3) = -7$. Opgaven
+    skal først løses med Maple, dernæst ved separation uden brug af Maple.
+}
+...
+
+% 4.2 (i)
+\section
+{
+    \mdseries
+    Her skal (a) løses uden Maple, (b) og (c) med Maple.
+}
+
+% 4.2 (i)a
+\subsection
+{
+    \mdseries
+    Find den fuldstændige løsning til differentialligningen $y'' + 2y' -3y =
+    0$.
+}
+...
+
+% 4.2 (i)b
+\subsection
+{
+    \mdseries
+    Find for enhver reel værdi af konstanten $a$ den fuldstændige løsning til
+    differentialligningen $y'' + 2y' - 3y = e^{ax}$.
+}
+...
+
+% 4.2 (i)c
+\subsection
+{
+    \mdseries
+    Find, stadig for alle $a$, den partikulære løsning $y(x)$ til problemet
+    i (b), som opfylder $y(0) = y'(0) = 0$.
+}
+...
+
+\end{document}
