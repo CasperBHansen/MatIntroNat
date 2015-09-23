@@ -20,6 +20,7 @@
 \newcommand{\conjugate}[1]{\bar{#1}}
 \newcommand{\degree}{^{\circ}}
 \newcommand{\limit}[2]{\lim_{#1 \rightarrow #2}}
+\newcommand{\with}[1]{{\ }d#1}
 
 \newcommand{\figref}[1]{fig. \ref{fig:#1}}
 \newcommand{\eqnref}[1]{(\ref{eqn:#1})}
@@ -52,11 +53,137 @@
 \section
 {
     \mdseries
-    Løs differentialligningen $(1 + x^2)(yy') = x(1 + y^2)$ med hver af
+    Løs differentialligningen $(1 + x^2)yy' = x(1 + y^2)$ med hver af
     begyndelsesbetingelserne $y(3) = 1$, $y(3) = 3$ og $y(3) = -7$. Opgaven
     skal først løses med Maple, dernæst ved separation uden brug af Maple.
 }
-...
+\begin{multicols}{2}
+
+    I Maple definerer jeg differentialligningen ved
+    \begin{lstlisting}
+    l := (1 + x^2) * y(x) * y'(x):
+    r := x * (1 + y(x)^2):
+    f := l = r;
+    \end{lstlisting}
+    og løser for hhv. $y(3) = k$, hvor $k \in \{1,3,-7\}$ ved
+    \begin{lstlisting}
+    dsolve({f, y(3) = 1})
+    dsolve({f, y(3) = 3})
+    dsolve({f, y(3) = -7})
+    \end{lstlisting}
+
+    \vfill{\ }\columnbreak
+
+    hvilket giver mig
+    \begin{align}
+        y(x) &= \frac{1}{5} \sqrt{5x^2 - 20} \qquad\mbox{for $y(3) = 1$} \\
+        y(x) &= x \qquad\mbox{for $y(3) = 3$} \\
+        y(x) &= -\sqrt{5x^2 + 4} \qquad\mbox{for $y(3) = -7$} \\
+    \end{align}
+
+\end{multicols}
+
+For at løse ved separation må vi omformulere udtrykket, og sigter efter
+formen $q(y)y' = p(x)$.
+\begin{align}
+    (1 + x^2)yy' &= x(1 + y^2)
+    \implies \frac{1 + x^2}{x} = \frac{1 + y^2}{yy'}
+    \implies \frac{x}{1 + x^2} = \frac{y}{1 + y^2} y'
+\end{align}
+
+De to variable er nu adskilt og vi kan betegne $q(y) = \frac{y}{1 + y^2}$
+og $p(x) = \frac{x}{1 + x^2}$. Lad os da integrere begge sider
+\begin{align}
+    \int \frac{x}{1 + x^2} \with x = \int \frac{y}{1 + y^2} y' \with x
+\end{align}
+
+Vi indfører nu $y = y(x)$; følgelig er $dy = y'(x) \with x$, og vi da at
+\begin{align}
+    \int \frac{x}{1 + x^2} \with x = \int \frac{y}{1 + y^2} y' \with x
+    \implies
+    \int \frac{x}{1 + x^2} \with x = \int \frac{y}{1 + y^2} \with y
+\end{align}
+og nu kan vi beregne integralet på begge sider
+\begin{align}
+    \int \frac{x}{1 + x^2} \with x = \int \frac{y}{1 + y^2} \with y
+    &\implies \frac{1}{2} \ln(x^2 + 1) + C_1 = \frac{1}{2} \ln(y^2 + 1) + C_2 \\
+\end{align}
+
+Vi lader $C = C_1 - C_2$ og fortsætter
+\begin{align}
+    \frac{1}{2} \ln(x^2 + 1) + C = \frac{1}{2} \ln(y^2 + 1)
+    &\implies y(x) = \pm \sqrt{Cx^2 + C - 1}
+\end{align}
+
+\iffalse
+
+Bemærk, at de ligner meget $\frac{2 \theta}{1 + \theta^2} = \sin \theta$, så
+hvis vi benytter integrationsregnereglen $\int k \cdot f(x) \with x = k \cdot
+\int f(x) \with x$ kan vi da udnytte dette til vores fordel. Vi har da, at
+\begin{align}
+    \frac{1}{2} \int \frac{2x}{1 + x^2} \with x =
+    \frac{1}{2} \int \frac{2y}{1 + y^2} \with y
+    &\implies
+    \frac{1}{2} \int \sin x \with x = \frac{1}{2} \int \sin y \with{y} \\
+    \implies \frac{C_1 - \cos x}{2} = \frac{C_2 - \cos y}{2}
+    &\implies C_1 - \cos x = C_2 - \cos y \\
+    \implies \cos y = C_2 - C_1 + \cos x
+    &\implies y = \arccos (C_2 - C_1 + \cos x)
+\end{align}
+
+Vi lader $C = C_1 - C_2$ og benytter at $\cos \theta = \pm \sqrt{1 - \sin^2
+\theta}$. Da har vi, at
+\begin{align}
+    y = \arctan \left( \pm \sqrt{1 - \sin^2 x} + C \right)
+\end{align}
+
+\fi
+
+Lader vi $y(3) = 1$ har vi, at
+\begin{align}
+    1 = \pm \sqrt{C \cdot 3^2 + C - 1}
+    &\implies 1^2 = C \cdot 3^2 + C - 1
+    \implies 2 = C \cdot 9 + C \\
+    &\implies 2 = 10C
+     \implies \frac{2}{10} = C = \frac{1}{5}
+\end{align}
+
+Indsætter vi dette, får vi
+\begin{align}
+    y(x) = \pm \sqrt{ \frac{1}{5}x^2 + \frac{1}{5} - 1 }
+    &\implies y(x) = \frac{1}{5} \sqrt{5x^2 - 20}
+\end{align}
+
+Lader vi $y(3) = 3$ har vi, at
+\begin{align}
+    3 = \pm \sqrt{C \cdot 3^2 + C - 1}
+    &\implies 3^2 = C \cdot 3^2 + C - 1
+    \implies 10 = C \cdot 9 + C \\
+    &\implies 10 = 10C
+     \implies \frac{10}{10} = C = 1
+\end{align}
+
+Indsætter vi dette, får vi
+\begin{align}
+    y(x) = \pm \sqrt{x^2 + 1 - 1}
+    &\implies y(x) = \sqrt{x^2}
+    \implies y(x) = x
+\end{align}
+
+Lader vi $y(3) = -7$ har vi, at
+\begin{align}
+    -7 = \pm \sqrt{C \cdot 3^2 + C - 1}
+    &\implies (-7)^2 = C \cdot 3^2 + C - 1
+    \implies 50 = C \cdot 9 + C \\
+    &\implies 50 = 10C
+     \implies \frac{50}{10} = C = 5
+\end{align}
+
+Indsætter vi dette, får vi
+\begin{align}
+    y(x) = \pm \sqrt{5x^2 + 5 - 1}
+    &\implies y(x) = -\sqrt{5x^2 + 4}
+\end{align}
 
 % 4.2 (i)
 \section
@@ -72,7 +199,29 @@
     Find den fuldstændige løsning til differentialligningen $y'' + 2y' -3y =
     0$.
 }
-...
+Vi bemærker at differentialligningen er af den homogene type i anden orden, og
+har da løsningen
+\begin{align}
+    y(x) = C_1 e^{r_1 x} + C_2 e^{r_2 x}
+\end{align}
+hvor $C_1, C_2 \in \mathbb{R}$ og $r_1, r_2$ er rødderne i ligningen $r^2 + ar
++ b = 0$.
+
+Lad os først bestemme, hvor mange rødder der er i ligningen $r^2 + 2r - 3 =
+0$. Vi beregner determinanten
+\begin{align}
+    d &= 2^2 - 4 \cdot 1 \cdot (-3) = 16
+\end{align}
+
+Da $d > 0$ har ligningen to rødder, som vi finder ved
+\begin{align}
+    r &= \frac{-2 \pm \sqrt{16}}{2 \cdot 1} = \frac{-2 \pm 4}{2} = \pm 2 - 1 = \pm 1
+\end{align}
+
+Nu kender vi rødderne og kan indsætte i den oprindelige differentialligning
+\begin{align}
+    y(x) = C_1 e^{x} + C_2 e^{-x}
+\end{align}
 
 % 4.2 (i)b
 \subsection
@@ -81,7 +230,18 @@
     Find for enhver reel værdi af konstanten $a$ den fuldstændige løsning til
     differentialligningen $y'' + 2y' - 3y = e^{ax}$.
 }
-...
+I Maple definerer jeg differentialligningen som
+\begin{lstlisting}
+f := y''(x) + 2y'(x) - 3y(x) = e^ax
+\end{lstlisting}
+og løser den ved
+\begin{lstlisting}
+dsolve(f)
+\end{lstlisting}
+hvilket giver mig
+\begin{align}
+    y(x) &= C_2 e^{-3x} + C_1 e^x - \frac{1}{3}e^{ax}
+\end{align}
 
 % 4.2 (i)c
 \subsection
@@ -90,6 +250,15 @@
     Find, stadig for alle $a$, den partikulære løsning $y(x)$ til problemet
     i (b), som opfylder $y(0) = y'(0) = 0$.
 }
-...
+I Maple genanvender jeg definitionen fra før, og løser ved
+\begin{lstlisting}
+dsolve({f, y(0)=0, y'(0)=0})
+\end{lstlisting}
+hvilket giver mig den partikulære løsning
+\begin{align}
+    y(x) &= \frac{1}{4} e^x e^{ax}
+          + \frac{1}{12} e^{-3x} e^{ax}
+          - \frac{1}{3} e^{ax}
+\end{align}
 
 \end{document}
