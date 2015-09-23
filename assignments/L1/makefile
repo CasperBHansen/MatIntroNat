@@ -1,5 +1,5 @@
 all:
-	pdflatex w1.tex
+	pdflatex l1.tex
 
 clean:
 	rm -rf *.{aux,toc,log,out}
