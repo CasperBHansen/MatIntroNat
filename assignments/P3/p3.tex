@@ -1,0 +1,147 @@
+\documentclass[11pt,a4paper]{article}
+
+%==============================================================================%
+
+\usepackage{a4wide}
+\usepackage{amsmath,amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{tikz}
+
+\usetikzlibrary{arrows}
+
+%==============================================================================%
+
+\newcommand{\assignmentnumber}{5}
+
+\newcommand{\modulus}[1]{\lvert#1\rvert}
+\newcommand{\conjugate}[1]{\bar{#1}}
+\newcommand{\degree}{^{\circ}}
+\newcommand{\limit}[2]{\lim_{#1 \rightarrow #2}}
+
+\newcommand{\figref}[1]{fig. \ref{fig:#1}}
+\newcommand{\eqnref}[1]{(\ref{eqn:#1})}
+
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\im}{Im}
+
+\renewcommand\thesection{\assignmentnumber.\arabic{section}}
+\renewcommand\thesubsection{\alph{subsection})}
+
+%==============================================================================%
+
+\title{MatIntro Pointopgave \assignmentnumber}
+\author
+{
+    Casper B. Hansen\\
+    University of Copenhagen\\
+    {\tt fvx507@alumni.ku.dk}
+}
+\date{\today}
+
+%==============================================================================%
+
+\begin{document}
+
+% \maketitle
+
+
+% 5.1
+\section
+{
+    \mdseries
+    Betragt funktionen $f(x,y) = \sqrt{4xy - 3y^2}$
+}
+
+% 5.1 (a)
+\subsection
+{
+    \mdseries
+    Bestemt definitionsmængden $D_f$. Skitser (uden Maple) $D_f$ i et
+    $xy$-diagram.
+}
+...
+
+% 5.1 (b)
+\subsection
+{
+    \mdseries
+    Lav (med Maple) et {\tt plot3d} af funktionen $4xy - 3y^2$, og sammensæt
+    dette med et plot af $xy$-planen, således at uligheden $4xy - 3y^2 \geq 0$
+    illustreres.
+}
+...
+
+% 5.1 (c)
+\subsection
+{
+    \mdseries
+    Bestem (uden Maple) $\limit{h}{0^+} \frac{f(h, rh)}{h}$ for alle $r \in
+    [0,\frac{4}{3}]$.
+}
+...
+
+
+% 5.2
+\section
+{
+    \mdseries
+    Betragt funktionen $f(x) = x^4 + 7x^2 - 2$.
+}
+
+% 5.2 (a)
+\subsection
+{
+    \mdseries
+    Bestem alle Taylorpolynomierne omkring $x = 1$ for funktionen (uden
+    Maple).
+}
+...
+
+% 5.2 (b)
+\subsection
+{
+    \mdseries
+    Indtegn (med Maple) resultatet fra (a) i et plot, som viser grafen for $f$
+    samt de tre Taylorpolynomier $T_1 f$, $T_2 f$ og $T_3 f$. Vælg f. eks.
+    $x$-intervallet $[-3,3]$.
+}
+...
+
+
+% 5.3i
+\section
+{
+    \mdseries
+    Betragt den naturlige logaritmefunktion $f(x) = \ln x$, og lad $T_n \ln$
+    være Taylorpolynomiet af grad $n$ omkring $x = 1$. Benyt formlen (side
+    586) for den $n$-te afledte af $\ln$, $f^{(n)}(x) = (-1)^{n - 1}
+    (n - 1)!x^{-n}$.
+}
+
+% 5.3i (a)
+\subsection
+{
+    \mdseries
+    Plot (med Maple) graferne for $\ln$, $T_9 \ln$ og $T_{49} \ln$ i et
+    fælles plot.
+}
+...
+
+% 5.3i (b)
+\subsection
+{
+    \mdseries
+    Argumentér, ud fra Taylors formel med restled, for at $\modulus{R_n
+    \ln x} = \modulus{\ln x - T_n \ln x} \leq \frac{1}{n+1}(x-1)^{n+1}$ for
+    $x > 1$. Udregn (med Maple), for $x = 2$, $x = 1.9$ og $x = 2.1$, værdien
+    af $T_{49} \ln x$ og sammenlign med $\ln x$ (også udregnet i Maple).
+    Check uligheden ovenfor. Forklar forskellen mellem tilfældene $x < 2$ og
+    $x > 2$.
+}
+...
+
+\end{document}
