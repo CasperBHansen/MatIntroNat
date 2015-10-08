@@ -87,10 +87,47 @@ Lad os tage $g$ i hånden også, igen
 \begin{align}
     \frac{\partial^2 g}{\partial y \partial x} (x,y)
     = \frac{\partial}{\partial y}
-      \left( \frac{\partial}{\partial x} xy + cos(2x + y) \right)
-    = \frac{\partial}{\partial y}
-      \left( y + cos(2x + y) \right)
+      \left( \frac{\partial}{\partial x} xy + \cos(2x + y) \right)
+    = \frac{\partial}{\partial y} \left( y - 2 \sin(2x + y) \right)
+    = -2 \cos(2x + y)
 \end{align}
+
+Og ligeledes
+\begin{align}
+    \frac{\partial^2 g}{\partial x \partial y} (x,y)
+    = \frac{\partial}{\partial x}
+      \left( \frac{\partial}{\partial y} xy + \cos(2x + y) \right)
+    = \frac{\partial}{\partial x} \left( x - 2 \sin(2x + y) \right)
+    = -2 \cos(2x + y)
+\end{align}
+Og bemærker, igen, at de er ens.
+
+\begin{multicols}{2}
+
+    Den sidste tager vi i Maple. Vi definerer da funktionen $h$ således
+    \begin{lstlisting}
+    h := (x,y) -> x ln(x^2 - 2y)
+    \end{lstlisting}
+    og beregner hhv. $\frac{\partial^2 h}{\partial y \partial x}$ og
+    $\frac{\partial^2 h}{\partial x \partial y}$ således
+    \begin{lstlisting}
+    diff(diff(h(x,y), y), x)
+    diff(diff(h(x,y), x), y)
+    \end{lstlisting}
+    
+    \vfill{\ }\columnbreak
+
+    Begge producerer, som forventet, samme resultat
+    \begin{align}
+        \frac{4x^2}{(x^2 - 2y)^2} - \frac{2}{x^2 - 2y} 
+    \end{align}
+
+    Selvfølgelig er det der søges, at få afklaret er, at
+    $\frac{\partial^2 h}{\partial y \partial x} =
+    \frac{\partial^2 h}{\partial x \partial y}$.
+
+    \vfill{\ }
+\end{multicols}
 
 % 6.2
 \section
