@@ -25,6 +25,8 @@
 \newcommand{\figref}[1]{fig. \ref{fig:#1}}
 \newcommand{\eqnref}[1]{(\ref{eqn:#1})}
 
+\newcommand{\half}{\frac{1}{2}}
+
 \DeclareMathOperator{\re}{Re}
 \DeclareMathOperator{\im}{Im}
 
@@ -53,15 +55,105 @@
 \section
 {
     \mdseries
-    ...
+    Beregn $\frac{\partial^2 f}{\partial y \partial x} (x,y) =
+    \frac{\partial}{\partial y}
+    \left( \frac{\partial}{\partial x} f(x,y) \right)$ for funktionen $f(x,y)
+    = y^2 (1 + xy)$. Beregn endvidere $\frac{\partial^2 f}{\partial x \partial y}
+    (x,y) = \frac{\partial}{\partial x} \left( \frac{\partial}{\partial y} f(x,y)
+    \right)$. Gør det samme for $g(x,y) = xy + \cos(2x + y)$ og $h(x,y) = x \ln
+    (x^2 - 2y)$. Tegner der sig et mønster? Løs mindst en af opgaverne i hånden
+    og mindst en med Maple.
+}
+Vi løser $f$ i hånden, og starter med $\frac{\partial^2 f}{\partial y \partial x}$
+\begin{align}
+    \frac{\partial^2 f}{\partial y \partial x} (x,y)
+    = \frac{\partial}{\partial y}
+      \left( \frac{\partial}{\partial x} y^2 (1 + xy) \right)
+    = \frac{\partial}{\partial y} y^3
+    = 3y^2
+\end{align}
+
+Dernæst beregner vi $\frac{\partial^2 f}{\partial x \partial y}$
+\begin{align}
+    \frac{\partial^2 f}{\partial x \partial y} (x,y)
+    = \frac{\partial}{\partial x}
+      \left( \frac{\partial}{\partial y} y^2 (1 + xy) \right)
+    = \frac{\partial}{\partial x} \left( 2y + 3xy^2 \right)
+    = 3y^2
+\end{align}
+Og bemærker, at de er ens.
+
+Lad os tage $g$ i hånden også, igen
+\begin{align}
+    \frac{\partial^2 g}{\partial y \partial x} (x,y)
+    = \frac{\partial}{\partial y}
+      \left( \frac{\partial}{\partial x} xy + cos(2x + y) \right)
+    = \frac{\partial}{\partial y}
+      \left( y + cos(2x + y) \right)
+\end{align}
+
+% 6.2
+\section
+{
+    \mdseries
+    Opgaven skal besvares uden Maple. Definer $h : \mathbb{R}^2 \backslash
+    \{(0,0)\} \rightarrow \mathbb{R}$ ved $h(x,y) = \frac{\cos x - \cos y}
+    {x^2 + y^2}$. Bestem $H(x) := \limit{y}{0} h(x,y)$, $x \in \mathbb{R}$ for
+    alle $x \in \mathbb{R}$ (også $x = 0$). Er $H$ en kontinuert funktion af
+    $x$? Hvad siger dette om mulighederne for at vælge en værdi $c = h(0,0)$,
+    sådan at $h$ bliver kontinuert i hele $\mathbb{R}^2$?
 }
 ...
 
-% 6.1 (a)
+% 6.3 i
+\section
+{
+    \mdseries
+    Til oplysning: Funktionen $\arcsin : [-1,1] \rightarrow [-\frac{\pi}{2},
+    \frac{\pi}{2}]$ er defineret som den omvendte funktion til $\sin :
+    [-\frac{\pi}{2}, \frac{\pi}{2}] \rightarrow [-1,1]$ og opfylder altså, at
+    $\sin(\arcsin(x)) = x$ for alle $x \in [-1,1]$. Endvidere, $\arcsin$ er
+    differentiabel op $(-1,1)$ med differentialkvotient $(\arcsin)'(x) =
+    \frac{1}{\sqrt{1 - x^2}}$. Spørgsmålene (a) og (b) herunder regnes uden
+    Maple, (c) og (d) kun med Maple.
+}
+
+% 6.3 i (a)
 \subsection
 {
     \mdseries
-    ...
+    Bestem Taylorpolynomiet $T_3 f$ af 3. orden omkring udviklingspunktet
+    $a = 0$ for funktionen $f = \arcsin$.
+}
+...
+
+% 6.3 i (b)
+\subsection
+{
+    \mdseries
+    Beregn dette Taylorpolynomiums værdi $b = T_3 f (\half)$ i $x = \half$.
+    Forklar med udgangspunkt i ligningen $\sin(\frac{\pi}{6}) = \half$,
+    hvorfor tallet $6b$ er en tilnærmelse til $\pi$. Hvor meget afviger $6b$
+    fra den egen approksimation til $\pi$?
+}
+...
+
+% 6.3 i (c)
+\subsection
+{
+    \mdseries
+    Det oplyses, at alle de afledte af $\arcsin$ er voksende i $[0,\half]$.
+    Hvilken maksimalt afvigelse garanterer TL Korollar 11.2.2 af $6b = 6T_3
+    f(\half)$ som tilnærmelse til $\pi$?
+}
+...
+
+% 6.3 i (d)
+\subsection
+{
+    \mdseries
+    Gentag beregningerne i (a)--(c) til orden 100 i stedet for 3 (og med
+    passende antal cifre i Maples udregninger).
 }
 ...
 
