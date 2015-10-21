@@ -140,7 +140,28 @@ Og bemærker, igen, at de er ens.
     $x$? Hvad siger dette om mulighederne for at vælge en værdi $c = h(0,0)$,
     sådan at $h$ bliver kontinuert i hele $\mathbb{R}^2$?
 }
-...
+Vi har at
+\begin{align}
+    H(x) &= \limit{y}{0} h(x,y)
+          = \limit{y}{0} \frac{\cos x - \cos y}{x^2 + y^2}
+          = \frac{\cos x - \limit{y}{0} \cos y}{x^2 + \limit{y}{0} y^2}
+          = \frac{\cos x - 1}{x^2}
+\end{align}
+
+Vi bemærker, at i $x = 0$ er $H(x)$ et $\frac{0}{0}$-udtryk, og derfor vil vi
+se på grænsen $\limit{x}{0} H(x)$ for at undersøge om denne eksistere.
+\begin{align}
+    \limit{x}{0} \frac{\cos x - 1}{x^2}
+    &= \limit{x}{0} \frac{(\cos x - 1)'}{(x^2)'}
+     = \limit{x}{0} -\frac{\sin x}{2x}
+     = \limit{x}{0} -\frac{(\sin x)'}{(2x)'}
+     = \limit{x}{0} -\frac{\cos x}{2}
+     = -\frac{1}{2}
+\end{align}
+
+Idet denne grænse eksisterer er funktionen $H(x)$ kontinuert. Lader vi
+$x = 0$ for dette udtryk får vi nøjagtig det samme, og dermed er $c = h(0,0)
+= -\frac{1}{2}$ --- $h(x,y)$ er altså kontinuert i hele $\mathbb{R}^2$.
 
 % 6.3 i
 \section
@@ -150,7 +171,7 @@ Og bemærker, igen, at de er ens.
     \frac{\pi}{2}]$ er defineret som den omvendte funktion til $\sin :
     [-\frac{\pi}{2}, \frac{\pi}{2}] \rightarrow [-1,1]$ og opfylder altså, at
     $\sin(\arcsin(x)) = x$ for alle $x \in [-1,1]$. Endvidere, $\arcsin$ er
-    differentiabel op $(-1,1)$ med differentialkvotient $(\arcsin)'(x) =
+    differentiabel på $(-1,1)$ med differentialkvotient $(\arcsin)'(x) =
     \frac{1}{\sqrt{1 - x^2}}$. Spørgsmålene (a) og (b) herunder regnes uden
     Maple, (c) og (d) kun med Maple.
 }
@@ -162,7 +183,25 @@ Og bemærker, igen, at de er ens.
     Bestem Taylorpolynomiet $T_3 f$ af 3. orden omkring udviklingspunktet
     $a = 0$ for funktionen $f = \arcsin$.
 }
-...
+Lad os differentiere og beregne de tilhørende koefficienter
+\begin{align}
+    f = \arcsin(x) \qquad f(0) &= 0 \\
+    f' = \frac{1}{\sqrt{1 - x^2}} \qquad f'(0) &= 1 \\
+    f'' = \frac{x}{\sqrt{(1 - x^2)^{\frac{3}{2}}}} \qquad f''(0) &= 0 \\
+    f''' = \frac{1}{\sqrt{(1 - x^2)^{\frac{3}{2}}}} +
+           \frac{3x^2}{\sqrt{(1 - x^2)^{\frac{5}{2}}}} \qquad f'''(0) &= 1
+\end{align}
+
+Da kan vi beregne Taylorpolynomierne $T_k f(x)$, for $k \in [0,3]$
+\begin{align}
+    T_0 f(x) &= \frac{f^{(0)}(0)}{0!} (x - 0)^0 = 0 \\
+    T_1 f(x) &= T_0 f(x) + \frac{f^{(1)}(0)}{1!} (x - 0)^1 = x \\
+    T_2 f(x) &= T_1 f(x) + \frac{f^{(2)}(0)}{2!} (x - 0)^2 = x \\
+    T_3 f(x) &= T_2 f(x) + \frac{f^{(3)}(0)}{3!} (x - 0)^2
+              = x + \frac{x^3}{6}
+\end{align}
+
+Taylorpolynomiet $T_3 f$ af 3. orden er derfor $\frac{1}{6}x^3 + x$
 
 % 6.3 i (b)
 \subsection
@@ -171,9 +210,29 @@ Og bemærker, igen, at de er ens.
     Beregn dette Taylorpolynomiums værdi $b = T_3 f (\half)$ i $x = \half$.
     Forklar med udgangspunkt i ligningen $\sin(\frac{\pi}{6}) = \half$,
     hvorfor tallet $6b$ er en tilnærmelse til $\pi$. Hvor meget afviger $6b$
-    fra den egen approksimation til $\pi$?
+    fra din egen approksimation til $\pi$?
 }
-...
+Vi beregner $b = T_3 f(\frac{1}{2})$ hhv. $6b$
+\begin{align}
+    b = T_3 f \left( \frac{1}{2} \right)
+    &= \frac{1}{2} + \frac{1}{6} \cdot \frac{1}{2^3}
+     = \frac{1}{2} + \frac{1}{48}
+     = \frac{50}{96}
+     = \frac{50}{96}
+     \qquad
+     6b = 6 \frac{50}{96} = 3.125
+\end{align}
+
+Vi ved at $\sin(\frac{\pi}{6}) = \half$ og $\arcsin(\sin(x)) = x$, vi har
+derfor, at
+
+\begin{align}
+    6 \arcsin \left[ \sin \left( \frac{\pi}{6} \right) \right]
+    = 6 \frac{\pi}{6}
+    = \pi
+\end{align}
+Idet $T_3 f$ er en approksimation af $\arcsin$ må $6b$ da være en
+approksimering af $\pi$.
 
 % 6.3 i (c)
 \subsection
@@ -183,7 +242,50 @@ Og bemærker, igen, at de er ens.
     Hvilken maksimalt afvigelse garanterer TL Korollar 11.2.2 af $6b = 6T_3
     f(\half)$ som tilnærmelse til $\pi$?
 }
-...
+I Maple løser jeg for $M$ i TL korollar 11.2.2 ved
+\begin{lstlisting}
+n := 3
+a := 0
+
+lhs := (d^(n+1)/d x^(n+1) arcsin(x)) * ((n+1)!)^(-1) * |x - a|^(n+1)
+rhs := M / ((n+1)!) * |x - a|^(n+1)
+
+solve(subs(x = 1/2, evalf(lhs = rhs)), M)
+\end{lstlisting}
+Og får $M = 86.217642$
+
+\iffalse
+Først beregnes restledet
+\begin{align}
+    \modulus{R_n f(x)} &= \modulus{\frac{f^{(n+1)}(c)}{(n + 1)!} (x - 1)^{n+1}} \\
+    \implies
+    \modulus{R_n f(x)} &= \modulus{
+        \left( \frac{15c^3}{(1 - c^2)^{7/2}} +
+               \frac{9c}{(1 - c^2)^{5/2}}
+        \right)
+        \frac{1}{(n + 1)!} (x - 1)^{n+1}}
+\end{align}
+
+Så indsætter vi i TL Korollar 11.2.2, hvor $a = 0$
+\begin{align}
+    \modulus{R_n f(x)} =
+    \modulus{
+        \left( \frac{15c^3}{(1 - c^2)^{7/2}} +
+               \frac{9c}{(1 - c^2)^{5/2}}
+        \right)
+        \frac{1}{(n + 1)!} (x - 1)^{n+1}}
+    &\leq
+    \frac{M}{(n + 1)!} \modulus{x - a}^{n+1}
+    \\
+    \modulus{
+        \left( \frac{15c^3}{(1 - c^2)^{7/2}} +
+               \frac{9c}{(1 - c^2)^{5/2}}
+        \right)
+        (x - 1)^{n+1}}
+    &\leq
+    M \modulus{x - a}^{n+1}
+\end{align}
+\fi
 
 % 6.3 i (d)
 \subsection
@@ -192,6 +294,30 @@ Og bemærker, igen, at de er ens.
     Gentag beregningerne i (a)--(c) til orden 100 i stedet for 3 (og med
     passende antal cifre i Maples udregninger).
 }
-...
+
+\begin{multicols}{2}
+    I Maple skriver jeg
+    \begin{lstlisting}
+    a := 0
+    mtaylor(arcsin(x), x=a, 100)
+    \end{lstlisting}
+    og får $T_{100} f$.
+
+    Ved beregning af $6b = 6 T_{100} f(\half)$ giver Maple mig en tilnærmelse
+    af $\pi$ på $3.1415926536146024854$, hvor {\tt Digits := 20}.
+
+    I Maple løser jeg for $M$ i TL korollar 11.2.2 ved
+\begin{lstlisting}
+n := 100
+a := 0
+
+lhs := (d^(n+1)/d x^(n+1) arcsin(x)) * ((n+1)!)^(-1) * |x - a|^(n+1)
+rhs := M / ((n+1)!) * |x - a|^(n+1)
+
+solve(subs(x = 1/2, evalf(lhs = rhs)), M)
+\end{lstlisting}
+Og får $M = 6.2175212 \cdot 10^{344}$
+
+\end{multicols}
 
 \end{document}

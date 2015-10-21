@@ -1,0 +1,102 @@
+\documentclass[11pt,a4paper]{article}
+
+%==============================================================================%
+
+\usepackage{a4wide}
+\usepackage{amsmath,amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{tikz}
+
+\usetikzlibrary{arrows}
+
+%==============================================================================%
+
+\newcommand{\assignmentnumber}{7}
+
+\newcommand{\modulus}[1]{\left|#1\right|}
+\newcommand{\conjugate}[1]{\bar{#1}}
+\newcommand{\degree}{^{\circ}}
+\newcommand{\limit}[2]{\lim_{#1 \rightarrow #2}}
+
+\newcommand{\figref}[1]{fig. \ref{fig:#1}}
+\newcommand{\eqnref}[1]{(\ref{eqn:#1})}
+
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\im}{Im}
+
+\renewcommand\thesection{\assignmentnumber.\arabic{section}}
+\renewcommand\thesubsection{\alph{subsection})}
+
+%==============================================================================%
+
+\title{MatIntro Pointopgave \assignmentnumber}
+\author
+{
+    Casper B. Hansen\\
+    University of Copenhagen\\
+    {\tt fvx507@alumni.ku.dk}
+}
+\date{\today}
+
+%==============================================================================%
+
+\begin{document}
+
+% \maketitle
+
+
+% 7.1
+\section
+{
+    \mdseries
+    Argumentér for, nedenstående funktion har et maksimum og minimum på den
+    angivne mængde. (OBS: Når der ikke anføres "lokalt" eller "globalt", menes
+    der per definition "globalt"). Illustrer grafen for funktionen på den
+    angivne mængde ved hjælp af Maple. Angiv ud fra figuren, hvad du mener er
+    maksimalpunkt og minimalpunkt samt maksimalværdi og minimalværdi.
+}
+\begin{align}
+    f(x,y) &= x + y^2
+    \text{,}\quad
+    \{x,y \in \mathbb{R}^2 | 0 \leq x \leq 2, x - 2 \leq y \leq x\}
+\end{align}
+
+$4 \leq x + y^2 \leq 6$
+
+% 7.2
+\section
+{
+    \mdseries
+    ...
+}
+...
+
+% 7.2 (a)
+\subsection
+{
+    \mdseries
+    ...
+}
+...
+
+% 7.2 (b)
+\subsection
+{
+    \mdseries
+    ...
+}
+...
+
+% 7.3 (ii)
+\section
+{
+    \mdseries
+    ...
+}
+...
+
+\end{document}
