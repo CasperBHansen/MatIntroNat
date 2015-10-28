@@ -1,0 +1,119 @@
+\documentclass[11pt,a4paper]{article}
+
+%==============================================================================%
+
+\usepackage{a4wide}
+\usepackage{amsmath,amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{tikz}
+
+\usetikzlibrary{arrows}
+
+%==============================================================================%
+
+\newcommand{\assignmentnumber}{8}
+
+\newcommand{\colbreak}{\vfill{\ }\columnbreak}
+
+\newcommand{\modulus}[1]{\left|#1\right|}
+\newcommand{\conjugate}[1]{\bar{#1}}
+\newcommand{\degree}{^{\circ}}
+\newcommand{\limit}[2]{\lim_{#1 \rightarrow #2}}
+
+\newcommand{\figref}[1]{fig. \ref{fig:#1}}
+\newcommand{\eqnref}[1]{(\ref{eqn:#1})}
+
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\im}{Im}
+
+\renewcommand\thesection{\assignmentnumber.\arabic{section}}
+\renewcommand\thesubsection{\alph{subsection})}
+
+%==============================================================================%
+
+\title{MatIntro Pointopgave \assignmentnumber}
+\author
+{
+    Casper B. Hansen\\
+    University of Copenhagen\\
+    {\tt fvx507@alumni.ku.dk}
+}
+\date{\today}
+
+%==============================================================================%
+
+\begin{document}
+
+% \maketitle
+
+
+% 8.1
+\section
+{
+    \mdseries
+    Benyt Maple til at finde alle stationære punkter for funktionen $f :
+    \mathbb{R}^2 \rightarrow \mathbb{R}$ givet ved
+}
+\begin{align}
+    f(x,y) = x(8x^2 + 5x + \cos y)
+    \label{eqn:8.1-function}
+\end{align}
+\section*
+{
+    \mdseries
+    og til at afgøre, om der er tale om lokalt maksimum, minimum eller
+    sadelpunkt for hvert af dem. Tegn med Maple grafen for $f$ i nærheden af
+    et sadelpunkt, til illustration af det punkts type.
+}
+...
+
+
+% 8.2
+\section
+{
+    \mdseries (Uden Maple)\\
+    Vi lader $D$ betegne den halve enhedscirkelskive
+}
+\begin{align}
+    D = \{ (x,y) \in \mathbb{R}^2 | x^2 + y^2 \leq 1, x \geq 0 \}
+\end{align}
+\section*
+{
+    \mdseries
+    og betragter funktionen $f : D \rightarrow \mathbb{R}^2$ givet ved
+}
+\begin{align}
+    f(x,y) = 4xy^2 - x^2
+\end{align}
+\section*
+{
+    \mdseries
+    Giv en begrundelse for, at $f$ har en størsteværdi og en mindsteværdi i
+    $D$. Bestem disse værdier og angiv, i hvilke punkter af $D$ disse
+    værdier antages.
+}
+...
+
+
+% 8.3
+\section
+{
+    \mdseries (Uden Maple)\\
+    Ved forsendelse af såkaldte ruller, altså pakker i cylinderform, kræver
+    postvæsenet i Langbortistan, at summen af længden $l$ og tre en halv
+    gange diameteren $d$ højst må være 84cm. Hvad er den maksimale volumen
+    af sådan en rulle?
+    \\\\
+    Redegør for, at opgaven kan løses ved at bestemme maksimum for en
+    funktion $V(l,d)$ defineret i en afsluttet og begrænset delmængde af
+    $\mathbb{R}^2$ (optimering under bibetingelser). Løs dette
+    optimeringsproblem dels ved elimination af én af de variable og dels ved
+    brug af Lagranges metode.
+}
+...
+
+\end{document}
