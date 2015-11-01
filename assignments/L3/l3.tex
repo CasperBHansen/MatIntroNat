@@ -23,6 +23,16 @@
 \newcommand{\figref}[1]{fig. \ref{fig:#1}}
 \newcommand{\eqnref}[1]{(\ref{eqn:#1})}
 
+\newcommand{\fig}[4]
+{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=#3]{figures/#2}
+        \caption{#4}
+        \label{fig:#1}
+    \end{figure}
+}
+
 \DeclareMathOperator{\re}{Re}
 \DeclareMathOperator{\im}{Im}
 
@@ -116,6 +126,8 @@ Fy := Int(y * x^2, y=u(x)..o(x))
 Int(Fy, x=a..b)
 \end{lstlisting}
 Hvilket igen giver $\frac{4}{5}$, som angivet i ligningen ovenfor.
+
+\fig{9-1-f}{9-1-f.png}{0.5}{Illustration af $f$ over $D$}
 
 \end{multicols}
 
