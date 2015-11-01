@@ -1,0 +1,156 @@
+\documentclass[11pt,a4paper]{article}
+
+%==============================================================================%
+
+\usepackage{a4wide}
+\usepackage{amsmath,amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{multicol}
+
+%==============================================================================%
+
+\newcommand{\assignmentnumber}{9}
+\newcommand{\modulus}[1]{\lvert#1\rvert}
+\newcommand{\conjugate}[1]{\bar{#1}}
+\newcommand{\degree}{^{\circ}}
+\newcommand{\limit}[2]{\lim_{#1 \rightarrow #2}}
+\newcommand{\with}[1]{{\ }d#1}
+\newcommand{\Int}[4]{\int_{#1}^{#2}#3\with{#4}}
+
+\newcommand{\figref}[1]{fig. \ref{fig:#1}}
+\newcommand{\eqnref}[1]{(\ref{eqn:#1})}
+
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\im}{Im}
+
+\renewcommand\thesection{\assignmentnumber.\arabic{section}}
+\renewcommand\thesubsection{\alph{subsection})}
+
+%==============================================================================%
+
+\title{MatIntro Lynopgave \assignmentnumber}
+\author
+{
+    Casper B. Hansen\\
+    University of Copenhagen\\
+    {\tt fvx507@alumni.ku.dk}
+}
+\date{\today}
+
+%==============================================================================%
+
+\begin{document}
+
+% \maketitle
+
+
+% 9.1
+\section
+{
+    \mdseries
+    Tegn en skitse af mængden
+}
+\begin{align}
+    D = \{ (x,y) \in \mathbb{R}^2{\ }|{\ }0 \leq y \leq 2, 1 - y \leq x \leq 1 \}
+    \label{eqn:D}
+\end{align}
+\section*
+{
+    \mdseries
+    som her er opskrevet på formen (5.2) fra bogens side 154.
+    \\\\
+    Udregn planintegralet af $x^2 y$ over $D$ som et itereret integral med
+    integration mht. $x$ inderst.
+    \\\\
+    Opskriv dernæst den samme mængde $D$ på lærebogens form (5.1) og udregn
+    det samme planintegral, nu med integration mht. $x$ yderst.
+    \\\\
+    Illustrer ved brug af Maple den figur, hvis rumfang integralet udtrykker.
+}
+\begin{multicols}{2}
+Først identificerer vi delelementerne af (5.2) formen
+\begin{align}
+    c = 0 \quad
+    d = 2 \quad
+    v(y) = 1 - y \quad
+    h(y) = 1
+\end{align}
+
+Så opstiller og beregner vi planintegralet af $x^2 y$ over $D$ som et
+itereret integral med $x$ inderst, ud fra sætning 5.2 TK, pkt. 2
+\begin{align}
+    \Int{0}{2}{ \left( \Int{1-y}{1}{x^2 y}{x} \right) }{y}
+    =
+    \frac{4}{5}
+\end{align}
+
+I Maple skriver jeg da
+\begin{lstlisting}
+c := 0; d := 2;
+v := y -> 1 - y; h := y -> 1;
+
+Fx := Int(y*x^2, x=v(y)..h(y))
+Int(Fx, y=c..d)
+\end{lstlisting}
+Hvilket giver $\frac{4}{5}$, som angivet i ligningen ovenfor.
+
+Omskriver vi (\ref{eqn:D}) fra til lærebogens form (5.1) har vi
+\begin{align}
+    D = \{ (x,y) \in \mathbb{R}^2{\ }|{\ }-1 \leq x \leq 1, 1 \leq y \leq x + 1 \}
+\end{align}
+hvilket vi da kan opstille integralet for, jvf. sætning 5.2 TK, pkt. 1
+\begin{align}
+    \Int{-1}{1}{ \left( \Int{x+1}{2}{x^2 y}{y} \right) }{x}
+    = \frac{4}{5}
+\end{align}
+
+I Maple skriver ligeledes
+\begin{lstlisting}
+a := -1; b := 1;
+u := x -> x + 1; o := x -> 2;
+
+Fy := Int(y * x^2, y=u(x)..o(x))
+Int(Fy, x=a..b)
+\end{lstlisting}
+Hvilket igen giver $\frac{4}{5}$, som angivet i ligningen ovenfor.
+
+\end{multicols}
+
+% 9.2
+\newpage
+\section
+{
+    \mdseries
+    Udregn både ved brug af kartesiske koordinater og ved brug af polære
+    koordinater planintegralet $\int_D x^2 d A$, når $D$ er den halve
+    cirkelskive
+}
+\begin{align}
+    D = \{ (x,y) \in \mathbb{R}^2{\ }|{\ }
+        -1 \leq x \leq 0,
+    -\sqrt{1 - x^2} \leq y \leq \sqrt{1 - x^2} \}
+\end{align}
+...
+
+
+% 9.3
+\section
+{
+    \mdseries
+    Udtryk mængden
+}
+\begin{align}
+    R = \{ (x,y,z) \in \mathbb{R}^3{\ }|{\ }0 \leq y, x^2 + y^2 + z^2 \leq 1 \}
+\end{align}
+\section*
+{
+    \mdseries
+    i sfæriske koordinater, og udregn derefter rumintegralet af funktionen
+    $f(x,y,z) = y$ over $R$.
+}
+...
+
+\end{document}
