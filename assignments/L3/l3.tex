@@ -22,6 +22,7 @@
 
 \newcommand{\figref}[1]{fig. \ref{fig:#1}}
 \newcommand{\eqnref}[1]{(\ref{eqn:#1})}
+\newcommand{\colbreak}{\vfill{\ }\columnbreak}
 
 \newcommand{\fig}[4]
 {
@@ -145,9 +146,26 @@ Hvilket igen giver $\frac{4}{5}$, som angivet i ligningen ovenfor.
         -1 \leq x \leq 0,
     -\sqrt{1 - x^2} \leq y \leq \sqrt{1 - x^2} \}
 \end{align}
-...
 
+Vi opskriver det itererede integrale i kartesiske koordinater (venstre) og
+i polære koordinater (højre) ved
+\begin{align}
+    \Int{-1}{0}{\left( \Int{-\sqrt{1 - x^2}}{\sqrt{1 - x^2}}{x^2}{y} \right)}{x}
+    \qquad
+    \Int{0}{1}{r^3 \cdot \left( \Int{-\frac{\pi}{2}}{\frac{\pi}{2}}{(\cos \theta)^2}{\theta} \right)}{r}
+\end{align}
 
+I Maple udregner vi da ved
+\begin{lstlisting}
+int(int(f(x,y),y=-sqrt(1-x^2)..sqrt(1-x^2)),x=-1..0)
+int(x^3*int(cos(y)^2,y=-pi/2..pi/2),x=0..1)
+\end{lstlisting}
+
+Begge giver resultatet $\frac{1}{8}\pi$, omend Maple glemmer at reducere lidt
+i udtrykket for udregning med polære koordinator --- at køre {\it value}
+funktionen på resultatet afvikler dog dette.
+
+\iffalse
 % 9.3
 \section
 {
@@ -164,5 +182,6 @@ Hvilket igen giver $\frac{4}{5}$, som angivet i ligningen ovenfor.
     $f(x,y,z) = y$ over $R$.
 }
 ...
+\fi
 
 \end{document}
